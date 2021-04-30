@@ -1,5 +1,6 @@
 package com.b2cshop.api.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -8,6 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class config {
 
 	//CORS config
+	@Bean
 	public WebMvcConfigurer configurer() {
 		return new WebMvcConfigurer() {
 			@Override

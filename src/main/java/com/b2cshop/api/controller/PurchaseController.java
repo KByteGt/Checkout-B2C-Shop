@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.b2cshop.api.model.CheckoutInfo;
+import com.b2cshop.api.model.Client;
 import com.b2cshop.api.model.Invoice;
 import com.b2cshop.api.model.InvoiceDetail;
 import com.b2cshop.api.model.ItemResponse;
 import com.b2cshop.api.service.InvoiceService;
+
 
 @RestController
 public class PurchaseController {
@@ -38,13 +40,16 @@ public class PurchaseController {
 	
 	@PostMapping("/purchase")
 	public Invoice addPurchase(@RequestBody CheckoutInfo checkout) {
+		System.out.println(" New request" + checkout);
 		List<InvoiceDetail> invoiceDetails = new ArrayList<InvoiceDetail>();
 		
 		for(String id : checkout.getItems()) {
 			invoiceDetails.add( new InvoiceDetail(id, getCostItem(id)));
 		}
 		
-		Invoice invoice = new Invoice(invoiceDetails);
+		Client client = checkout.getClient();
+		
+		Invoice invoice = new Invoice(invoiceDetails, client.getFirstName(), client.getLastName(), client.getEmail());
 		service.createNewInvoice(invoice);
 		
 		return invoice;

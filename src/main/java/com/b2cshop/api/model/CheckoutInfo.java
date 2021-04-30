@@ -33,4 +33,8 @@ public class CheckoutInfo {
 		this.items = items;
 	}
 	
+	@Override
+	public String toString() {
+		return "CheckoutInfo [client=" + client + ", items=" + items + "]";
+	}
 }
