@@ -2,6 +2,14 @@ package com.b2cshop.api.model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -12,16 +20,14 @@ public class InvoiceDetail {
 	private Long invoice_detail;
 	private Long invoice;
 	private String product_id;
-	private int count;
 	private double individual_cost;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date add_date;
 	
 	public InvoiceDetail() {}
 	
-	public InvoiceDetail(String product_id, int count, double individual_cost) {
+	public InvoiceDetail(String product_id, double individual_cost) {
 		this.product_id = product_id;
-		this.count = count;
 		this.individual_cost = individual_cost;
 		this.add_date = new Date();
 	}
@@ -51,14 +57,6 @@ public class InvoiceDetail {
 		this.product_id = product_id;
 	}
 
-	public int getCount() {
-		return count;
-	}
-
-	public void setCount(int count) {
-		this.count = count;
-	}
-
 	public double getIndividual_cost() {
 		return individual_cost;
 	}
@@ -74,9 +72,10 @@ public class InvoiceDetail {
 	public void setAdd_date(Date add_date) {
 		this.add_date = add_date;
 	}
-	
-	//"Get & Set"
-	
-	
 
+	@Override
+	public String toString() {
+		return "InvoiceDetail [invoice_detail=" + invoice_detail + ", invoice=" + invoice + ", product_id=" + product_id
+				+ ", individual_cost=" + individual_cost + ", add_date=" + add_date + "]";
+	}
 }
