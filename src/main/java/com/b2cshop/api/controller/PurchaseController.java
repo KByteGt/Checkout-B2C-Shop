@@ -27,7 +27,8 @@ public class PurchaseController {
 	private RestTemplate restTemplate;
 	
 	//API URL
-	private final String API = "http://localhost:2500/api/item/price/";
+	//private final String API = "http://localhost:2500/api/item/price/";
+	private final String API = "https://b2c-shop-api-dot-b2c-shop-fortnite.uc.r.appspot.com/api/item/price/";
 	
 	public double getCostItem(String itemId) {
 		double cost = 0;
